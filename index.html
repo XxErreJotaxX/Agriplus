@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri+</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Agri+</h1>
+        <p>Conectando você ao futuro sustentável da agropecuária</p>
+    </header>
+
+    <div class="container">
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <nav class="sidebar">
+            <a href="index.html">Mapeamento</a>
+            <a href="planejamento.html">Planejamento</a>
+            <a href="suporte.html">Suporte</a>
+            <a href="conscientizacao.html">Conscientização</a>
+        </nav>
+
+        <div class="main-content">
+            <section id="mapSection" class="content-section active">
+                <h2>Mapeamento via Satélite</h2>
+                <p>Visualize áreas rurais e identifique pontos críticos, como solo degradado.</p>
+                <div id="map"></div>
+            </section>
+
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Agri+ &copy; 2025 - Todos os direitos reservados</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtfKyd3Du5-Olog7BQzbqDDdundsiTs2w&callback=initMap" async defer></script>
+</body>
+</html>
