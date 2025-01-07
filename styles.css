@@ -26,18 +26,24 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Ajuste no layout para o menu lateral retrátil */
 .container {
-    display: flex; /* Mantém a disposição flexível */
-    flex: 1; /* Garante que o conteúdo ocupe o restante da largura */
+    display: flex;
+    flex-direction: row; /* Mantém a organização horizontal */
+    flex-wrap: nowrap; /* Impede quebra de linha */
+    min-height: 100vh; /* Garante que o conteúdo ocupe toda a tela */
 }
 
+/* Conteúdo principal */
 .main-content {
-    flex: 1; /* O conteúdo vai ocupar o restante do espaço */
+    flex: 1;
+    margin-left: 250px; /* Espaço para o menu */
+    margin-top: 80px; /* Espaço para a header */
     padding: 10px;
-    margin-bottom: 70px; /* Espaço para o rodapé */
+    transition: margin-left 0.3s ease; /* Transição suave */
 }
 
-/* Estilos para o menu hambúrguer */
+/* Ajuste no botão hambúrguer */
 .menu-toggle {
     cursor: pointer;
     font-size: 24px;
@@ -45,14 +51,13 @@ body {
     border: none;
     color: white;
     padding: 10px;
-    display: block;
-    position: fixed; /* Torna o botão fixo */
-    top: 20px; /* Ajuste a distância do topo */
-    left: 10px; /* Ajuste a distância da esquerda */
-    z-index: 1001; /* Garante que o ícone fique acima do conteúdo */
+    position: fixed;
+    top: 20px; /* Posicionado dentro da header */
+    left: 10px;
+    z-index: 1001; /* Mantém o botão acima de todos os elementos */
 }
 
-
+/* Animação das barras do menu */
 .menu-toggle .bar {
     display: block;
     width: 30px;
@@ -62,19 +67,26 @@ body {
     transition: all 0.3s;
 }
 
-/* Transição de animação para o menu */
+/* Ajuste para o menu lateral ficar abaixo da header */
 .sidebar {
     background-color: #2C6B2F;
     color: white;
-    width: 250px; /* Define a largura fixa da sidebar */
+    width: 250px;
+    position: fixed;
+    height: calc(100% - 80px); /* Ajusta altura para ficar abaixo da header */
+    top: 80px; /* Mesma altura da header */
+    left: 0;
+    z-index: 1000; /* Garante que o menu fique acima do conteúdo principal */
     transition: transform 0.3s ease;
     transform: translateX(0);
 }
 
+/* Quando o menu está retraído */
 .sidebar.retracted {
-    transform: translateX(-250px);
+    transform: translateX(-250px); /* Esconde o menu */
 }
 
+/* Links do menu lateral */
 .sidebar a {
     color: white;
     text-decoration: none;
@@ -90,10 +102,17 @@ body {
     background-color: #66BB6A;
 }
 
+/* Quando o menu está retraído */
+.sidebar.retracted ~ .main-content {
+    margin-left: 0; /* Remove o espaço reservado ao menu */
+}
+
+/* Conteúdo principal */
 .main-content {
     flex: 1;
+    margin-left: 250px; /* Espaço para o menu */
     padding: 10px;
-    margin-bottom: 70px; /* Espaço para o rodapé */
+    transition: margin-left 0.3s ease; /* Transição suave */
 }
 
 #map {
@@ -101,6 +120,26 @@ body {
     width: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsividade para telas menores */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 200px; /* Reduz a largura */
+        height: calc(100% - 80px); /* Ajusta altura para telas menores */
+    }
+
+    .sidebar.retracted {
+        transform: translateX(-200px); /* Ajusta posição retraída */
+    }
+
+    .main-content {
+        margin-left: 200px;
+    }
+
+    .sidebar.retracted ~ .main-content {
+        margin-left: 0;
+    }
 }
 
 .footer {
